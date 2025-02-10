@@ -226,18 +226,18 @@ jobs:
         oc new-app --name=banking-portal-ui-v1 --docker-image=ghcr.io/${{ env.LOWERCASE_OWNER }}/banking-portal-ui:${{ github.sha }}
         oc expose service/banking-portal-ui-v1
         oc status --suggest
-    - name: Echo outputs
-      run: |
-        echo "${{ toJSON(steps.push.outputs) }}"
-    - name: Print application URL
-      env:
-        ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-        SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
-      run: |
-        [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
-        echo
-        echo "======================== Your application is available at: ========================"
-        echo ${{ env.ROUTE }}
-        echo "==================================================================================="
-        echo
-        echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
+    # - name: Echo outputs
+    #   run: |
+    #     echo "${{ toJSON(steps.push.outputs) }}"
+    # - name: Print application URL
+    #   env:
+    #     ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
+    #     SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
+    #   run: |
+    #     [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
+    #     echo
+    #     echo "======================== Your application is available at: ========================"
+    #     echo ${{ env.ROUTE }}
+    #     echo "==================================================================================="
+    #     echo
+    #     echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
